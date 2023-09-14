@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { logger: false });
 
   // Swagger configuration options
   const config = new DocumentBuilder()
@@ -17,9 +17,9 @@ async function bootstrap() {
 
   const builder = new DocumentBuilder();
 
-  console.log(
-    JSON.stringify(SwaggerModule.createDocument(app, builder.build())),
-  );
+  const doc = SwaggerModule.createDocument(app, builder.build());
+
+  console.log(JSON.stringify(doc, null, 2));
 
   await app.listen(3000);
 }
