@@ -1,0 +1,61 @@
+
+> nest-app@0.0.1 start
+> nest start
+
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Country": {
+        "type": "string",
+        "enum": [
+          "DE",
+          "UK"
+        ]
+      },
+      "CountryDto": {
+        "type": "object",
+        "properties": {
+          "countries": {
+            "type": "array",
+            "description": "https://unstats.un.org/unsd/methodology/m49",
+            "items": {
+              "$ref": "#/components/schemas/Country"
+            }
+          }
+        },
+        "required": [
+          "countries"
+        ]
+      }
+    }
+  }
+}
